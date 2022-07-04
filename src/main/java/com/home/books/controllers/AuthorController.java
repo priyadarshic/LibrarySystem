@@ -1,8 +1,11 @@
 package com.home.books.controllers;
 
+import com.home.books.models.AppResponse;
 import com.home.books.repository.AuthorRepository;
 import com.home.books.models.Author;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -16,6 +19,9 @@ public class AuthorController {
 
     @Autowired
     AuthorRepository authorRepository;
+
+    @Autowired
+    AppResponse response;
 
     AtomicLong counterId = new AtomicLong();
     Map<java.lang.String, Author> authorRegister = new HashMap<>();
@@ -35,7 +41,7 @@ public class AuthorController {
             author.setAuthorNationality(nationality);
             author.setAuthorIntroduction(introduction);
             Author tempAuth = new Author(author);
-            authorRegister.put(fname, tempAuth);
+            authorRegister.put(fname, author);
         }
 
         return authorRegister.get(fname);
@@ -52,11 +58,14 @@ public class AuthorController {
     }
 
     @PostMapping("/uploadAuthor")
-    public Author uploadAuthor(@RequestBody Author author)
+    public ResponseEntity uploadAuthor(@RequestBody Author author)
     {
         authorRepository.save(author);
+        response.setMsg("Success. Author is Added");
+        response.setId(Long.toString(author.getId()));
 
-        return author;
+//      ResponseEntity is better for returning Java Beans as JSON as well as HTTP STATUS
+        return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
     @GetMapping("/addAuthor")

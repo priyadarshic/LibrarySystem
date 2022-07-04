@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private java.lang.String authorFirstName;
     private java.lang.String authorLastName;
