@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 public class Book {
 
     private long id;
-    private String bookTitle;
+    private java.lang.String bookTitle;
     private Author author;
-    private String bookPublisher;
-    private String bookGenre;
-    private String bookISBN;
-    private String bookWebsite;
+    private java.lang.String bookPublisher;
+    private java.lang.String bookGenre;
+    private java.lang.String bookISBN;
+    private java.lang.String bookWebsite;
     private double bookPrice;
     private int bookNumPages;
 
@@ -33,44 +33,44 @@ public class Book {
         this.author = author;
     }
 
-    public String getBookTitle() {
+    public java.lang.String getBookTitle() {
         return bookTitle;
     }
 
-    public void setBookTitle(String bookTitle) {
+    public void setBookTitle(java.lang.String bookTitle) {
         this.bookTitle = bookTitle;
     }
 
 
-    public String getBookPublisher() {
+    public java.lang.String getBookPublisher() {
         return bookPublisher;
     }
 
-    public void setBookPublisher(String bookPublisher) {
+    public void setBookPublisher(java.lang.String bookPublisher) {
         this.bookPublisher = bookPublisher;
     }
 
-    public String getBookGenre() {
+    public java.lang.String getBookGenre() {
         return bookGenre;
     }
 
-    public void setBookGenre(String bookGenre) {
+    public void setBookGenre(java.lang.String bookGenre) {
         this.bookGenre = bookGenre;
     }
 
-    public String getBookISBN() {
+    public java.lang.String getBookISBN() {
         return bookISBN;
     }
 
-    public void setBookISBN(String bookISBN) {
+    public void setBookISBN(java.lang.String bookISBN) {
         this.bookISBN = bookISBN;
     }
 
-    public String getBookWebsite() {
+    public java.lang.String getBookWebsite() {
         return bookWebsite;
     }
 
-    public void setBookWebsite(String bookWebsite) {
+    public void setBookWebsite(java.lang.String bookWebsite) {
         this.bookWebsite = bookWebsite;
     }
 

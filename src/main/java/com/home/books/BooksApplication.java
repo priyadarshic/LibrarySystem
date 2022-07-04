@@ -14,13 +14,14 @@ import java.util.Optional;
 public class BooksApplication implements CommandLineRunner{
 
 	@Autowired
-	BookLibraryRepository repository;
+	LibraryRepository repository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BooksApplication.class, args);
 	}
 
-	/*@Bean
+	/*
+	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
 
@@ -40,16 +41,18 @@ public class BooksApplication implements CommandLineRunner{
 
 		System.out.println("JPA Runner: ");
 
-		Iterable<BookLibrary> iterator = repository.findAll();
+		Iterable<Library> iterator = repository.findAll();
 		System.out.println("All expense items: ");
 		iterator.forEach(item -> System.out.println(item));
 
-//		repository.save(new BookLibrary("1001", "The Mahabharata"));
-		/*Optional<BookLibrary> optionalBookLibrary= repository.findById("bk1TnHgMT");
+//		repository.save(new BookLibrary("1000", "The Ramayana"));
+
+		Optional<Library> optionalBookLibrary= repository.findById("bk1TnHgMT");
 		if(optionalBookLibrary.isPresent())
 		{
 			System.out.println(optionalBookLibrary.get().getBook_name());
-		}*/
+			System.out.println(optionalBookLibrary.get().getAuthor());
+		}
 
 		System.out.println("JPA End");
 

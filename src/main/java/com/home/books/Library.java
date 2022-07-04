@@ -3,7 +3,7 @@ package com.home.books;
 import javax.persistence.*;
 
 @Entity
-public class BookLibrary {
+public class Library {
 
     @Column(name = "book_name")
     private String book_name;
@@ -21,9 +21,9 @@ public class BookLibrary {
     @Column(name = "author")
     private String author;
 
-    protected BookLibrary() {}
+    protected Library() {}
 
-    public BookLibrary(String id, String book_name)
+    public Library(String id, String book_name)
     {
         this.id = id;
         this.book_name = book_name;

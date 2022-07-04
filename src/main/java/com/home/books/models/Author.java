@@ -1,18 +1,23 @@
 package com.home.books.models;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.atomic.AtomicLong;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Component
+@Entity
 public class Author {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    private String authorFirstName;
-    private String authorLastName;
-    private String authorNationality;
-    private String authorIntroduction;
+    private java.lang.String authorFirstName;
+    private java.lang.String authorLastName;
+    private java.lang.String authorNationality;
+    private java.lang.String authorIntroduction;
 
     public Author() {
     }
@@ -34,35 +39,35 @@ public class Author {
         this.id = id;
     }
 
-    public String getAuthorFirstName() {
+    public java.lang.String getAuthorFirstName() {
         return authorFirstName;
     }
 
-    public void setAuthorFirstName(String authorFirstName) {
+    public void setAuthorFirstName(java.lang.String authorFirstName) {
         this.authorFirstName = authorFirstName;
     }
 
-    public String getAuthorLastName() {
+    public java.lang.String getAuthorLastName() {
         return authorLastName;
     }
 
-    public void setAuthorLastName(String authorLastName) {
+    public void setAuthorLastName(java.lang.String authorLastName) {
         this.authorLastName = authorLastName;
     }
 
-    public String getAuthorNationality() {
+    public java.lang.String getAuthorNationality() {
         return authorNationality;
     }
 
-    public void setAuthorNationality(String authorNationality) {
+    public void setAuthorNationality(java.lang.String authorNationality) {
         this.authorNationality = authorNationality;
     }
 
-    public String getAuthorIntroduction() {
+    public java.lang.String getAuthorIntroduction() {
         return authorIntroduction;
     }
 
-    public void setAuthorIntroduction(String authorIntroduction) {
+    public void setAuthorIntroduction(java.lang.String authorIntroduction) {
         this.authorIntroduction = authorIntroduction;
     }
 }
