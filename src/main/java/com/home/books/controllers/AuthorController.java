@@ -73,6 +73,22 @@ public class AuthorController {
         return author;
     }
 
+    @GetMapping("/deleteAuthorById")
+    public String deleteAuthorById(@RequestParam(value = "id") Long id)
+    {
+        if(authorRepository.existsById(id))
+        {
+            authorRepository.deleteById(id);
+            return "Success: Deleted Record with ID: " + id;
+        }
+        else
+        {
+            return "Error: The given ID " + id + " doesn't Exist";
+        }
+
+
+    }
+
 
 
 
