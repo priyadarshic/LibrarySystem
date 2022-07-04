@@ -11,8 +11,9 @@ import java.util.Optional;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.home.books")
-public class BooksApplication implements CommandLineRunner{
+public class BooksApplication {
 
+	// implements CommandLineRunner
 	@Autowired
 	LibraryRepository repository;
 
@@ -35,7 +36,7 @@ public class BooksApplication implements CommandLineRunner{
 		};
 	}*/
 
-
+	/*
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -57,5 +58,5 @@ public class BooksApplication implements CommandLineRunner{
 		System.out.println("JPA End");
 
 
-	}
+	}*/
 }

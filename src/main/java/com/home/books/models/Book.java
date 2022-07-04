@@ -3,12 +3,20 @@ package com.home.books.models;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 @Component
+@Entity
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.TABLE)
     private long id;
     private java.lang.String bookTitle;
-    private Author author;
+    private long authorId;
     private java.lang.String bookPublisher;
     private java.lang.String bookGenre;
     private java.lang.String bookISBN;
@@ -24,13 +32,12 @@ public class Book {
         this.id = id;
     }
 
-    public Author getAuthor() {
-        return author;
+    public long getAuthorId() {
+        return authorId;
     }
 
-    @Autowired
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthorId(long authorId) {
+        this.authorId = authorId;
     }
 
     public java.lang.String getBookTitle() {

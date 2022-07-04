@@ -1,4 +1,4 @@
-package com.home.books;
+package com.home.books.repository;
 
 import com.home.books.models.Author;
 import org.springframework.data.repository.CrudRepository;
