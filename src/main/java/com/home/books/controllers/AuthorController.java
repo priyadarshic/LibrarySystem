@@ -68,19 +68,21 @@ public class AuthorController {
         HttpHeaders headers = new HttpHeaders();
         if(libraryService.checkAuthorExists(author))
         {
-            response.setMsg("Author already Exists");
+            response.setMsg("Author already Exists!");
+            response.setId(Long.toString(author.getId()));
+            headers.add("headerID", Long.toString(author.getId()));
+            return new ResponseEntity<AppResponse>(response, headers, HttpStatus.ACCEPTED);
         }
         else
         {
             authorRepository.save(author);
-            response.setMsg("Success. Author is Added");
+            response.setMsg("Success!! Author is Added");
+            response.setId(Long.toString(author.getId()));
+            headers.add("headerID", Long.toString(author.getId()));
+            return new ResponseEntity<AppResponse>(response, headers, HttpStatus.CREATED);
+//          ResponseEntity is better for returning Java Beans as JSON as well as HTTP STATUS
+
         }
-        response.setId(Long.toString(author.getId()));
-        headers.add("headerID", Long.toString(author.getId()));
-
-
-//      ResponseEntity is better for returning Java Beans as JSON as well as HTTP STATUS
-        return new ResponseEntity<AppResponse>(response, headers, HttpStatus.CREATED);
     }
 
     @GetMapping("/addAuthor")
@@ -118,7 +120,7 @@ public class AuthorController {
         }
     }
 
-    @GetMapping("/findById")
+    @GetMapping("/findAuthorById")
     public Author findAuthorByID(@RequestParam(value = "id") Long id)
     {
         Optional<Author> optionalAuthor = authorRepository.findById(id);
