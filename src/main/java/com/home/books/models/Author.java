@@ -1,5 +1,7 @@
 package com.home.books.models;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Getter
+@Setter
 @Component
 @Entity
 public class Author {
@@ -31,6 +35,7 @@ public class Author {
         this.authorIntroduction = obj.authorIntroduction;
     }
 
+/*
     public long getId() {
         return id;
     }
@@ -69,5 +74,5 @@ public class Author {
 
     public void setAuthorIntroduction(java.lang.String authorIntroduction) {
         this.authorIntroduction = authorIntroduction;
-    }
+    }*/
 }

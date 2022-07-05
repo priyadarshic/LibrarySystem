@@ -3,6 +3,7 @@ package com.home.books.controllers;
 import com.home.books.models.AppResponse;
 import com.home.books.repository.AuthorRepository;
 import com.home.books.models.Author;
+import com.home.books.repository.LibraryRepository;
 import com.home.books.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +23,9 @@ public class AuthorController {
 
     @Autowired
     AuthorRepository authorRepository;
+
+    @Autowired
+    LibraryRepository libraryRepository;
 
     @Autowired
     LibraryService libraryService;
@@ -134,7 +138,12 @@ public class AuthorController {
         {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
 
+    @GetMapping("/listAuthorsByName")
+    public List<Author> getAuthorsByName(@RequestParam String firstname)
+    {
+        return libraryRepository.listAuthorsByFirstName(firstname);
     }
 
 
