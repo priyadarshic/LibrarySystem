@@ -3,7 +3,9 @@ package com.home.books.controllers;
 import com.home.books.models.AppResponse;
 import com.home.books.repository.AuthorRepository;
 import com.home.books.models.Author;
+import com.home.books.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,9 @@ public class AuthorController {
 
     @Autowired
     AuthorRepository authorRepository;
+
+    @Autowired
+    LibraryService libraryService;
 
     @Autowired
     AppResponse response;
@@ -58,14 +63,24 @@ public class AuthorController {
     }
 
     @PostMapping("/uploadAuthor")
-    public ResponseEntity uploadAuthor(@RequestBody Author author)
+    public ResponseEntity<AppResponse> uploadAuthor(@RequestBody Author author)
     {
-        authorRepository.save(author);
-        response.setMsg("Success. Author is Added");
+        HttpHeaders headers = new HttpHeaders();
+        if(libraryService.checkAuthorExists(author))
+        {
+            response.setMsg("Author already Exists");
+        }
+        else
+        {
+            authorRepository.save(author);
+            response.setMsg("Success. Author is Added");
+        }
         response.setId(Long.toString(author.getId()));
+        headers.add("headerID", Long.toString(author.getId()));
+
 
 //      ResponseEntity is better for returning Java Beans as JSON as well as HTTP STATUS
-        return new ResponseEntity(response, HttpStatus.CREATED);
+        return new ResponseEntity<AppResponse>(response, headers, HttpStatus.CREATED);
     }
 
     @GetMapping("/addAuthor")
@@ -86,16 +101,20 @@ public class AuthorController {
     }
 
     @GetMapping("/deleteAuthorById")
-    public String deleteAuthorById(@RequestParam(value = "id") Long id)
+    public ResponseEntity<AppResponse> deleteAuthorById(@RequestParam(value = "id") Long id)
     {
         if(authorRepository.existsById(id))
         {
             authorRepository.deleteById(id);
-            return "Success: Deleted Record with ID: " + id;
+            response.setId(Long.toString(id));
+            response.setMsg("Success: Record Deleted!");
+            return new ResponseEntity<AppResponse>(response, HttpStatus.CREATED);
         }
         else
         {
-            return "Error: ID " + id + " doesn't Exist";
+            response.setId(Long.toString(id));
+            response.setMsg("Error: ID doesn't Exist!!");
+            return new ResponseEntity<AppResponse>(response, HttpStatus.BAD_REQUEST);
         }
     }
 

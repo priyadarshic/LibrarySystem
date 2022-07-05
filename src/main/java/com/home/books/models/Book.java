@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.TABLE)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private java.lang.String bookTitle;
     private long authorId;
