@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -18,9 +15,13 @@ public class Book {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long bookId;
-    private long authorId;
+
+//    private String author_id;
     private double bookPrice;
     private int bookPages;
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private Author book_author;
     private String authorFullName;
     private String bookTitle;
     private String bookLang;
@@ -28,6 +29,5 @@ public class Book {
     private String bookPublisher;
     private String bookISBN;
     private String bookWebsite;
-
 
 }

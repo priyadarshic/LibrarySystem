@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,6 +20,8 @@ public class Author {
     private java.lang.String authorLastName;
     private java.lang.String authorNationality;
     private java.lang.String authorIntroduction;
+    /*@OneToMany(mappedBy="bookId")
+    private List<Book> books;*/
 
     public Author() {
     }
