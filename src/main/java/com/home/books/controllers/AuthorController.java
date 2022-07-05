@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -119,6 +120,23 @@ public class AuthorController {
             return new ResponseEntity<AppResponse>(response, HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    @GetMapping("/getAuthor/{id}")
+    public Author getAuthorByID(@PathVariable(value="id") String id)
+    {
+        try
+        {
+            Optional<Author> optionalAuthor = authorRepository.findById(Long.parseLong(id));
+            return optionalAuthor.get();
+        }
+        catch (Exception e)
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+    }
+
 
     @GetMapping("/findAuthorById")
     public Author findAuthorByID(@RequestParam(value = "id") Long id)
