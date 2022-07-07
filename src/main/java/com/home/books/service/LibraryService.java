@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
-public class LibraryService {
-
+public class LibraryService implements ILibraryService {
     @Autowired
     AuthorRepository authorRepository;
 
+    @Override
     public boolean checkAuthorExists(Author author)
     {
         AtomicBoolean authorExists = new AtomicBoolean(false);

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 @RestController
@@ -49,13 +50,15 @@ public class BookController {
     {
         try
         {
+            //Insert Logic for Author Exists
             bookRepository.save(book);
             appResponse.setMsg("Success!! Book is Saved to DB");
             appResponse.setId(Long.toString(book.getBookId()));
         }
         catch (Exception e)
         {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw e;
         }
 
         return new ResponseEntity<>(appResponse, HttpStatus.CREATED);
